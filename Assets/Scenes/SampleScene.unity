@@ -509,7 +509,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381547358}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -542,7 +542,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inHandPosition: {fileID: 731322674}
   ballSpeed: 20
-  gravityForce: 15
+  gravityForce: 40
+  normalMat: {fileID: 2100000, guid: a063651f8bccc4da2a828e04d9497d91, type: 2}
+  blackholeMat: {fileID: 2100000, guid: fbe966b7c63e6490b9ea80e6323931f5, type: 2}
+  baseMass: 5
+  blackHoleMass: 100
+  normalScale: 0.3
+  blackHoleScale: 0.7
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,7 +899,7 @@ Transform:
   m_GameObject: {fileID: 731322674}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.318, y: 0, z: 0.516}
+  m_LocalPosition: {x: 0.387, y: 0, z: 0.563}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []

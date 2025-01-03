@@ -14,10 +14,15 @@ public class BallController : MonoBehaviour
     [SerializeField] private GameObject inHandPosition;
     [SerializeField] private float ballSpeed = 5.0f;
     [SerializeField] private float gravityForce = 0.1f;
+    [SerializeField] private Material normalMat;
+    [SerializeField] private Material blackholeMat;
 
     private Rigidbody rb;
-    private float baseMass = 1f;
-    private float blackHoleMass = 100f;
+    [SerializeField] private float baseMass = 5f;
+    [SerializeField] private float blackHoleMass = 100f;
+
+    [SerializeField] private float normalScale = 0.2f;
+    [SerializeField] private float blackHoleScale = 0.7f;
 
     void Start()
     {
@@ -32,10 +37,14 @@ public class BallController : MonoBehaviour
                 rb.transform.position = inHandPosition.transform.position;
                 rb.useGravity = false;
                 rb.mass = baseMass;
+                rb.GetComponent<MeshRenderer>().material = normalMat;
+                rb.transform.localScale = new Vector3(normalScale, normalScale, normalScale);
                 break;
             case BallStates.free:
                 rb.mass = baseMass;
                 rb.useGravity = true;
+                rb.GetComponent<MeshRenderer>().material = normalMat;
+                rb.transform.localScale = new Vector3(blackHoleScale, blackHoleScale, blackHoleScale);
                 break;
             case BallStates.blackHole:
                 rb.useGravity = false;
@@ -48,6 +57,8 @@ public class BallController : MonoBehaviour
                     direction /= (direction.magnitude + 0.0001f);
                     entity.GetComponent<Rigidbody>().AddForce(direction * gravityForce);
                 }
+                rb.GetComponent<MeshRenderer>().material = blackholeMat;
+                rb.transform.localScale = new Vector3(blackHoleScale, blackHoleScale, blackHoleScale);
                 break;
         }
     }
@@ -62,8 +73,9 @@ public class BallController : MonoBehaviour
         state = _state;
     }
 
-    public void Throw(Vector3 angle)
+    public void Throw(Vector3 from, Vector3 angle)
     {
+        rb.transform.position = from;
         rb.linearVelocity = angle * ballSpeed;
         rb.useGravity = true;
     }

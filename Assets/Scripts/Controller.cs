@@ -37,9 +37,12 @@ public class Controller : MonoBehaviour
             {
                 ball.SetState(BallController.BallStates.free);
                 Vector3 forward = camera.transform.TransformDirection(Vector3.forward);
-                ball.Throw(forward);
+                ball.Throw(camera.transform.position + forward, forward);
             }
-            else if (ball.GetState() == BallController.BallStates.free)
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            if (ball.GetState() == BallController.BallStates.free)
             {
                 ball.SetState(BallController.BallStates.blackHole);
             }
@@ -48,7 +51,7 @@ public class Controller : MonoBehaviour
                 ball.SetState(BallController.BallStates.free);
             }
         }
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.R))
         {
             if (ball.GetState() == BallController.BallStates.free)
             {
