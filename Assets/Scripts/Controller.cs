@@ -4,6 +4,7 @@ public class Controller : MonoBehaviour
 {
     private float yaw = 0.0f;
     private float pitch = 0.0f;
+    private float inputSensitivity = 0.1f;
 
     private Rigidbody rb;
 
@@ -23,10 +24,8 @@ public class Controller : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && Physics.Raycast(rb.transform.position, Vector3.down, 1 + 0.0001f))
-        {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpspeed, rb.linearVelocity.z);
-        }
+        //Debug.Log(Physics.Raycast(rb.transform.position, Vector3.down, 1 + 0.0001f));
+        
         Look();
         if (Input.GetKeyUp(KeyCode.E))
         {
@@ -69,10 +68,37 @@ public class Controller : MonoBehaviour
 
     private void Movement()
     {
-        Vector2 axis = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")) * walkspeed;
+        // Jump
+        if (Grounded())
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpspeed, rb.linearVelocity.z);
+            }
+            else if (rb.linearVelocity.y < 0.0f)
+            {
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0.0f, rb.linearVelocity.z);
+            }
+        }
+
+        // Lock player
+        if (Mathf.Abs(Input.GetAxisRaw("Vertical")) < inputSensitivity 
+            && Mathf.Abs(Input.GetAxisRaw("Horizontal")) < inputSensitivity
+            && !Input.GetKey(KeyCode.Space)
+            && Grounded())
+        {
+            rb.isKinematic = true;
+        }
+        else
+        {
+            rb.isKinematic = false;
+        }
+
+        Vector2 axis = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal")) * walkspeed;
         Vector3 forward = new Vector3(-Camera.main.transform.right.z, 0.0f, Camera.main.transform.right.x);
         Vector3 wishDirection = (forward * axis.x + Camera.main.transform.right * axis.y + Vector3.up * rb.linearVelocity.y);
         rb.linearVelocity = wishDirection;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -83,5 +109,10 @@ public class Controller : MonoBehaviour
             ball = otherObject;
             ball.SetState(BallController.BallStates.inHand);
         }
+    }
+
+    public bool Grounded()
+    {
+        return Physics.Raycast(rb.transform.position, Vector3.down, 1 + 0.0001f);
     }
 }
