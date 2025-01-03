@@ -1,10 +1,16 @@
 using UnityEngine;
+using System.Collections;
 
 public class Controller : MonoBehaviour
 {
     private float yaw = 0.0f;
     private float pitch = 0.0f;
     private float inputSensitivity = 0.1f;
+
+    [SerializeField] private float groundedCounterMax = 60f;
+    private float groundedCounter = 0f;
+
+    private Vector2 savedAxis = Vector2.zero;
 
     private Rigidbody rb;
 
@@ -24,8 +30,6 @@ public class Controller : MonoBehaviour
     
     void Update()
     {
-        //Debug.Log(Physics.Raycast(rb.transform.position, Vector3.down, 1 + 0.0001f));
-        
         Look();
         if (Input.GetKeyUp(KeyCode.E))
         {
@@ -68,24 +72,34 @@ public class Controller : MonoBehaviour
 
     private void Movement()
     {
+        // Ground Check
+        if (Physics.Raycast(rb.transform.position, Vector3.down, 1 + 0.0001f))
+        {
+            groundedCounter = groundedCounterMax;
+        }
+        else
+        {
+            groundedCounter -= Time.deltaTime;
+        }
+
+
         // Jump
         if (Grounded())
         {
             if (Input.GetKey(KeyCode.Space))
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpspeed, rb.linearVelocity.z);
-            }
-            else if (rb.linearVelocity.y < 0.0f)
-            {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0.0f, rb.linearVelocity.z);
+                groundedCounter = 0f;
             }
         }
+            
 
         // Lock player
         if (Mathf.Abs(Input.GetAxisRaw("Vertical")) < inputSensitivity 
             && Mathf.Abs(Input.GetAxisRaw("Horizontal")) < inputSensitivity
             && !Input.GetKey(KeyCode.Space)
-            && Grounded())
+            && Grounded()
+            && ball.GetState() != BallController.BallStates.blackHole)
         {
             rb.isKinematic = true;
         }
@@ -94,15 +108,27 @@ public class Controller : MonoBehaviour
             rb.isKinematic = false;
         }
 
+
         Vector2 axis = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal")) * walkspeed;
+
+        // Save momentum during jump
+        if (Grounded())
+        {
+            savedAxis = axis;
+        }
+        else
+        {
+            axis += savedAxis * 0.3f;
+        }
+
         Vector3 forward = new Vector3(-Camera.main.transform.right.z, 0.0f, Camera.main.transform.right.x);
         Vector3 wishDirection = (forward * axis.x + Camera.main.transform.right * axis.y + Vector3.up * rb.linearVelocity.y);
-        rb.linearVelocity = wishDirection;
-        
+        rb.linearVelocity = wishDirection;   
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        // Collect the sphere
         BallController otherObject = other.gameObject.GetComponent<BallController>();
         if (otherObject != null && otherObject.Grounded() && otherObject.GetState() == BallController.BallStates.free)
         {
@@ -113,6 +139,10 @@ public class Controller : MonoBehaviour
 
     public bool Grounded()
     {
-        return Physics.Raycast(rb.transform.position, Vector3.down, 1 + 0.0001f);
+        if (groundedCounter > 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -210,7 +210,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 766ee32ec431f4cb3b8c926f1a9c507e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -249,8 +249,8 @@ Transform:
   m_GameObject: {fileID: 11570278}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.08, y: 1.49, z: -0.005987048}
-  m_LocalScale: {x: 2.5725, y: 1, z: 2.3937936}
+  m_LocalPosition: {x: 2.08, y: 2.547, z: -0.005987048}
+  m_LocalScale: {x: 2.5725, y: 2.4, z: 2.3937936}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -346,7 +346,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 766ee32ec431f4cb3b8c926f1a9c507e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -385,8 +385,8 @@ Transform:
   m_GameObject: {fileID: 197964983}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.06, y: 1.49, z: -0.005987048}
-  m_LocalScale: {x: 2.5725, y: 1, z: 2.3937936}
+  m_LocalPosition: {x: -2.06, y: 2.48, z: -0.005987048}
+  m_LocalScale: {x: 2.5725, y: 3.4125, z: 5.0868115}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -679,6 +679,7 @@ GameObject:
   - component: {fileID: 516490383}
   - component: {fileID: 516490384}
   - component: {fileID: 516490385}
+  - component: {fileID: 516490386}
   m_Layer: 0
   m_Name: Player
   m_TagString: GravityAffected
@@ -748,7 +749,7 @@ Transform:
   m_GameObject: {fileID: 516490374}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.803, y: 3.435, z: 0}
+  m_LocalPosition: {x: -1.803, y: 3.435, z: -3.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -767,8 +768,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3640f8c95e6714bf2bba03605525bf3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundedCounterMax: 1
   walkspeed: 10
-  jumpspeed: 7
+  jumpspeed: 8
   sensitivity: 5
   ball: {fileID: 381547364}
   camera: {fileID: 1970710093}
@@ -795,7 +797,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -845,6 +847,27 @@ CapsuleCollider:
   m_Height: 1.8604393
   m_Direction: 1
   m_Center: {x: -0.004621446, y: 0.06978035, z: 0}
+--- !u!65 &516490386
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516490374}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5236988, y: 2, z: 1.3693616}
+  m_Center: {x: -0.010201931, y: 0, z: 0.00000008940697}
 --- !u!1 &731322674
 GameObject:
   m_ObjectHideFlags: 0
