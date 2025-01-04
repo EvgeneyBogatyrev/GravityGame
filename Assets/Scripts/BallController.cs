@@ -10,7 +10,7 @@ public class BallController : MonoBehaviour
         free,
         blackHole,
     }
-    private BallStates state = BallStates.inHand; 
+    private BallStates state = BallStates.free; 
     [SerializeField] private GameObject inHandPosition;
     [SerializeField] private float ballSpeed = 5.0f;
     [SerializeField] private float gravityForce = 0.1f;
@@ -54,8 +54,10 @@ public class BallController : MonoBehaviour
                 foreach (GameObject entity in entities)
                 {
                     Vector3 direction = (transform.position - entity.transform.position);
-                    direction /= (direction.magnitude + 0.0001f);
-                    entity.GetComponent<Rigidbody>().AddForce(direction * gravityForce);
+                    float distance = direction.magnitude + 0.0001f;
+                    direction /= distance;
+                    distance = Mathf.Max(distance, 1f);
+                    entity.GetComponent<Rigidbody>().AddForce(direction * entity.GetComponent<Rigidbody>().mass * gravityForce / distance);
                 }
                 rb.GetComponent<MeshRenderer>().material = blackholeMat;
                 rb.transform.localScale = new Vector3(blackHoleScale, blackHoleScale, blackHoleScale);

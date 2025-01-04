@@ -46,7 +46,7 @@ public class Controller : MonoBehaviour
             {
                 ball.SetState(BallController.BallStates.blackHole);
             }
-            else
+            else if (ball.GetState() == BallController.BallStates.blackHole)
             {
                 ball.SetState(BallController.BallStates.free);
             }
@@ -133,7 +133,7 @@ public class Controller : MonoBehaviour
     {
         // Collect the sphere
         BallController otherObject = other.gameObject.GetComponent<BallController>();
-        if (otherObject != null && otherObject.Grounded() && otherObject.GetState() == BallController.BallStates.free)
+        if (otherObject != null && otherObject.GetState() == BallController.BallStates.free)
         {
             ball = otherObject;
             ball.SetState(BallController.BallStates.inHand);
