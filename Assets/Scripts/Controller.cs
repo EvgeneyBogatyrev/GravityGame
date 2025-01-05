@@ -92,7 +92,7 @@ public class Controller : MonoBehaviour
             bloodImage.color = bloodColor;
 
             Color redColor = redImage.color;
-            redColor.a = (maxHp - hp) / maxHp * 0.1f;
+            redColor.a = (maxHp - hp) / maxHp * 0.5f;
             redImage.color = redColor;
 
         }
