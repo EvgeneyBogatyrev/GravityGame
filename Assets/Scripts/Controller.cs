@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Controller : MonoBehaviour
@@ -22,17 +23,34 @@ public class Controller : MonoBehaviour
 
     [SerializeField] private BallController ball;
     [SerializeField] private GameObject camera;
+
+    private GameObject bloodScreen;
+    private GameObject redScreen;
+
+    [SerializeField] private float maxHp = 100f;
+    [SerializeField] private float hp = 100f;
+    [SerializeField] private float healSpeed = 0.1f;
+
+    [SerializeField] private float standTimeMax = 3f;
+    [SerializeField] private float standTime = 3f;
     
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;   
         rb = gameObject.GetComponent<Rigidbody>();
+        hp = maxHp;
+
+        standTime = standTimeMax;
+
+        bloodScreen = GameObject.Find("BloodScreen");
+        redScreen = GameObject.Find("RedScreen");
     }
 
     
     void Update()
     {
         Look();
+        // Control
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (ball.GetState() == BallController.BallStates.inHand)
@@ -57,6 +75,33 @@ public class Controller : MonoBehaviour
                 ball.SetState(BallController.BallStates.inHand);
             }
         }
+
+        // Heal
+        if (hp < maxHp)
+        {
+            hp += healSpeed;
+
+            bloodScreen.SetActive(true);
+            redScreen.SetActive(true);
+
+            RawImage bloodImage = bloodScreen.GetComponent<RawImage>();
+            RawImage redImage = redScreen.GetComponent<RawImage>();
+
+            Color bloodColor = bloodImage.color;
+            bloodColor.a = (maxHp - hp) / maxHp * 1f;
+            bloodImage.color = bloodColor;
+
+            Color redColor = redImage.color;
+            redColor.a = (maxHp - hp) / maxHp * 0.1f;
+            redImage.color = redColor;
+
+        }
+        else
+        {
+            hp = maxHp;
+            bloodScreen.SetActive(false);
+            redScreen.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -77,7 +122,6 @@ public class Controller : MonoBehaviour
         // Run
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            Debug.Log("Here");
             currentSpeed = runspeed;
         }
         else
@@ -106,10 +150,24 @@ public class Controller : MonoBehaviour
             }
         }
             
+        bool noInput = false;
+        if (Mathf.Abs(Input.GetAxisRaw("Vertical")) < inputSensitivity 
+            && Mathf.Abs(Input.GetAxisRaw("Horizontal")) < inputSensitivity)
+        {
+            noInput = true;
+        }
+
+        if (noInput)
+        {
+            standTime -= Time.deltaTime;
+        }
+        else
+        {
+            standTime = standTimeMax;
+        }
 
         // Lock player
-        if (Mathf.Abs(Input.GetAxisRaw("Vertical")) < inputSensitivity 
-            && Mathf.Abs(Input.GetAxisRaw("Horizontal")) < inputSensitivity
+        if (noInput
             && !Input.GetKey(KeyCode.Space)
             && Grounded()
             && ball.GetState() != BallController.BallStates.blackHole)
@@ -157,5 +215,16 @@ public class Controller : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        hp -= damage;
+        hp = Mathf.Max(0, hp);
+    }
+
+    public float GetSTandTime()
+    {
+        return standTime;
     }
 }
