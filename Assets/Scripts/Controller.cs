@@ -6,6 +6,7 @@ public class Controller : MonoBehaviour
     private float yaw = 0.0f;
     private float pitch = 0.0f;
     private float inputSensitivity = 0.1f;
+    private float currentSpeed = 0.0f;
 
     [SerializeField] private float groundedCounterMax = 60f;
     private float groundedCounter = 0f;
@@ -14,9 +15,10 @@ public class Controller : MonoBehaviour
 
     private Rigidbody rb;
 
-    [SerializeField] private float walkspeed = 5.0f;
+    [SerializeField] private float walkspeed = 4.0f;
+    [SerializeField] private float runspeed = 10.0f;
     [SerializeField] private float jumpspeed = 5.0f;
-    [SerializeField] private float sensitivity = 2.0f;
+    [SerializeField] private float sensitivity = 2.0f; 
 
     [SerializeField] private BallController ball;
     [SerializeField] private GameObject camera;
@@ -31,7 +33,7 @@ public class Controller : MonoBehaviour
     void Update()
     {
         Look();
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (ball.GetState() == BallController.BallStates.inHand)
             {
@@ -39,10 +41,7 @@ public class Controller : MonoBehaviour
                 Vector3 forward = camera.transform.TransformDirection(Vector3.forward);
                 ball.Throw(camera.transform.position + forward, forward);
             }
-        }
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            if (ball.GetState() == BallController.BallStates.free)
+            else if (ball.GetState() == BallController.BallStates.free)
             {
                 ball.SetState(BallController.BallStates.blackHole);
             }
@@ -51,7 +50,7 @@ public class Controller : MonoBehaviour
                 ball.SetState(BallController.BallStates.free);
             }
         }
-        if (Input.GetKeyUp(KeyCode.R))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             if (ball.GetState() == BallController.BallStates.free)
             {
@@ -75,6 +74,17 @@ public class Controller : MonoBehaviour
 
     private void Movement()
     {
+        // Run
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Debug.Log("Here");
+            currentSpeed = runspeed;
+        }
+        else
+        {
+            currentSpeed = walkspeed;
+        }
+
         // Ground Check
         if (Physics.Raycast(rb.transform.position, Vector3.down, 1 + 0.0001f))
         {
@@ -112,7 +122,7 @@ public class Controller : MonoBehaviour
         }
 
 
-        Vector2 axis = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal")) * walkspeed;
+        Vector2 axis = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal")) * currentSpeed;
 
         // Save momentum during jump
         if (Grounded())

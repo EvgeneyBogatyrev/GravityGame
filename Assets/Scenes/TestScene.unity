@@ -1010,6 +1010,7 @@ GameObject:
   - component: {fileID: 516490384}
   - component: {fileID: 516490385}
   - component: {fileID: 516490386}
+  - component: {fileID: 516490387}
   m_Layer: 0
   m_Name: Player
   m_TagString: GravityAffected
@@ -1099,7 +1100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundedCounterMax: 1
-  walkspeed: 10
+  walkspeed: 7
+  runspeed: 20
   jumpspeed: 8
   sensitivity: 5
   ball: {fileID: 381547364}
@@ -1198,6 +1200,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.6384275, y: 2.8913336, z: 3.038666}
   m_Center: {x: 0.08087516, y: 0.08313608, z: 0.13821757}
+--- !u!114 &516490387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516490374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &731322674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1413,7 @@ GameObject:
   - component: {fileID: 845921321}
   - component: {fileID: 845921320}
   - component: {fileID: 845921319}
+  - component: {fileID: 845921324}
   m_Layer: 6
   m_Name: TestCube (4)
   m_TagString: GravityAffected
@@ -1522,6 +1537,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &845921324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845921318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &921287954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,6 +1562,7 @@ GameObject:
   - component: {fileID: 921287957}
   - component: {fileID: 921287956}
   - component: {fileID: 921287955}
+  - component: {fileID: 921287960}
   m_Layer: 6
   m_Name: TestCube (7)
   m_TagString: GravityAffected
@@ -1658,6 +1686,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &921287960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921287954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &938946624
 GameObject:
   m_ObjectHideFlags: 0
@@ -2103,6 +2143,7 @@ GameObject:
   - component: {fileID: 1225889367}
   - component: {fileID: 1225889366}
   - component: {fileID: 1225889365}
+  - component: {fileID: 1225889370}
   m_Layer: 6
   m_Name: TestCube (3)
   m_TagString: GravityAffected
@@ -2226,6 +2267,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1225889370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225889364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1231746885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,6 +2400,7 @@ GameObject:
   - component: {fileID: 1300558193}
   - component: {fileID: 1300558192}
   - component: {fileID: 1300558191}
+  - component: {fileID: 1300558196}
   m_Layer: 6
   m_Name: TestCube (1)
   m_TagString: GravityAffected
@@ -2470,6 +2524,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1300558196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300558190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1328547618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2807,6 +2873,7 @@ GameObject:
   - component: {fileID: 1528007813}
   - component: {fileID: 1528007812}
   - component: {fileID: 1528007811}
+  - component: {fileID: 1528007816}
   m_Layer: 6
   m_Name: TestCube (6)
   m_TagString: GravityAffected
@@ -2930,6 +2997,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1528007816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528007810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1533933978
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,6 +3238,7 @@ GameObject:
   - component: {fileID: 1546905944}
   - component: {fileID: 1546905943}
   - component: {fileID: 1546905942}
+  - component: {fileID: 1546905947}
   m_Layer: 6
   m_Name: TestCube (5)
   m_TagString: GravityAffected
@@ -3282,6 +3362,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1546905947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546905941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1573728476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3482,6 +3574,7 @@ GameObject:
   - component: {fileID: 1646050009}
   - component: {fileID: 1646050008}
   - component: {fileID: 1646050007}
+  - component: {fileID: 1646050012}
   m_Layer: 6
   m_Name: DoorBlock
   m_TagString: GravityAffected
@@ -3605,6 +3698,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1646050012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646050006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1649792310
 GameObject:
   m_ObjectHideFlags: 0
@@ -3618,6 +3723,7 @@ GameObject:
   - component: {fileID: 1649792313}
   - component: {fileID: 1649792312}
   - component: {fileID: 1649792311}
+  - component: {fileID: 1649792316}
   m_Layer: 6
   m_Name: TestCube (2)
   m_TagString: GravityAffected
@@ -3741,6 +3847,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1649792316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649792310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1651292524
 GameObject:
   m_ObjectHideFlags: 0
@@ -3754,6 +3872,7 @@ GameObject:
   - component: {fileID: 1651292527}
   - component: {fileID: 1651292526}
   - component: {fileID: 1651292525}
+  - component: {fileID: 1651292530}
   m_Layer: 6
   m_Name: Platform (3)
   m_TagString: GravityAffected
@@ -3877,6 +3996,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1651292530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651292524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1665577486
 GameObject:
   m_ObjectHideFlags: 0
@@ -4286,6 +4417,7 @@ GameObject:
   - component: {fileID: 1887408911}
   - component: {fileID: 1887408910}
   - component: {fileID: 1887408914}
+  - component: {fileID: 1887408915}
   m_Layer: 6
   m_Name: TestCube
   m_TagString: GravityAffected
@@ -4409,6 +4541,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1887408915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887408909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1896460902
 GameObject:
   m_ObjectHideFlags: 0
@@ -4878,6 +5022,7 @@ GameObject:
   - component: {fileID: 2050130080}
   - component: {fileID: 2050130079}
   - component: {fileID: 2050130078}
+  - component: {fileID: 2050130083}
   m_Layer: 6
   m_Name: Platform (2)
   m_TagString: GravityAffected
@@ -5001,6 +5146,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2050130083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050130077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d42939180e4c8aa6094e5d6f3a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2061770454
 GameObject:
   m_ObjectHideFlags: 0

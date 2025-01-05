@@ -50,16 +50,7 @@ public class BallController : MonoBehaviour
                 rb.useGravity = false;
                 rb.mass = blackHoleMass;
                 rb.linearVelocity = Vector3.zero;
-                GameObject[] entities = GameObject.FindGameObjectsWithTag("GravityAffected");
-                foreach (GameObject entity in entities)
-                {
-                    Vector3 direction = (transform.position - entity.transform.position);
-                    float distance = direction.magnitude + 0.0001f;
-                    direction /= distance;
-                    distance = Mathf.Max(distance, 1f);
-                    entity.GetComponent<Rigidbody>().AddForce(direction * entity.GetComponent<Rigidbody>().mass * gravityForce / distance);
-                }
-                rb.GetComponent<MeshRenderer>().material = blackholeMat;
+                GetComponent<MeshRenderer>().material = blackholeMat;
                 rb.transform.localScale = new Vector3(blackHoleScale, blackHoleScale, blackHoleScale);
                 break;
         }
@@ -85,5 +76,10 @@ public class BallController : MonoBehaviour
     public bool Grounded()
     {
         return Physics.Raycast(rb.transform.position, Vector3.down, 1 + 0.0001f);
+    }
+
+    public float GetGravityForce()
+    {
+        return gravityForce;
     }
 }
