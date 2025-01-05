@@ -95,6 +95,8 @@ public class Controller : MonoBehaviour
             redColor.a = (maxHp - hp) / maxHp * 0.5f;
             redImage.color = redColor;
 
+            
+
         }
         else
         {
